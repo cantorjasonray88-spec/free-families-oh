@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Families OH</title>
+<style>
+body{font-family:Arial;padding:20px;background:#f7f7f7;}
+.card{background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+input,textarea{width:100%;padding:10px;margin:6px 0;border-radius:6px;border:1px solid #ccc;}
+.cta{background:#c62828;color:#fff;padding:10px 14px;border-radius:6px;border:0;}
+</style>
+</head>
+<body>
+
+<h1>Free Families OH</h1>
+
+<div class="card">
+<h2>Submit a Case</h2>
+<form id="caseForm">
+<label>Name (optional)</label><input name="Name">
+<label>Contact (optional)</label><input name="Contact">
+<label>Who is affected?</label><input name="PersonAffected">
+<label>Description</label><textarea name="Description" rows="6"></textarea>
+<label>Date (optional)</label><input name="Date">
+<label>City / County (optional)</label><input name="Location">
+<button class="cta" type="submit">Submit Case</button>
+</form>
+</div>
+
+<script>
+document.getElementById('caseForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const f=e.target;
+ const data={
+  name:f.Name.value,contact:f.Contact.value,personAffected:f.PersonAffected.value,
+  description:f.Description.value,date:f.Date.value,location:f.Location.value
+ };
+ await fetch('/api/submit-case',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+ alert("Case submitted.");
+ f.reset();
+});
+</script>
+
+</body>
+</html>

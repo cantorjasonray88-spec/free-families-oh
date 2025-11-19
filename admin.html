@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Dashboard</title>
+<style>
+body{font-family:Arial;padding:20px;background:#fafafa;}
+.card{background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;}
+.case{border-left:4px solid #c62828;padding-left:10px;margin-bottom:10px;}
+button{padding:6px 10px;margin-top:6px;}
+</style>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+<div id="cases"></div>
+
+<script>
+async function loadCases(){
+ const res = await fetch('/api/list-cases');
+ const data = await res.json();
+ let html="";
+ data.forEach((c,i)=>{
+  html+=`<div class="card case">
+    <strong>${c.personAffected||"Unknown"}</strong><br>
+    <em>${c.date||""} — ${c.location||""}</em>
+    <p>${c.description}</p>
+    <button onclick="removeCase(${i})">Delete</button>
+  </div>`;
+ });
+ document.getElementById("cases").innerHTML=html;
+}
+async function removeCase(i){
+ await fetch('/api/delete-case/'+i,{method:"DELETE"});
+ loadCases();
+}
+loadCases();
+</script>
+</body>
+</html>
