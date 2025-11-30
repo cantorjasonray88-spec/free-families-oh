@@ -14,7 +14,7 @@ function saveCases(c){ fs.writeFileSync(FILE, JSON.stringify(c,null,2)); }
 
 // Email setup (configure your SMTP server)
 const transporter = nodemailer.createTransport({
-  host:"smtp.cantor.jason.ray88@gmail.com",
+  host:"smtp.gmail.com",
   port:587,
   secure:false,
   auth:{ user:"cantor.jason.ray88.com", pass:"WhiteDevil88@@" }
