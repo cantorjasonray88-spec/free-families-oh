@@ -14,10 +14,10 @@ function saveCases(c){ fs.writeFileSync(FILE, JSON.stringify(c,null,2)); }
 
 // Email setup (configure your SMTP server)
 const transporter = nodemailer.createTransport({
-  host:"smtp.example.com",
+  host:"smtp.cantor.jason.ray88@gmail.com",
   port:587,
   secure:false,
-  auth:{ user:"user@example.com", pass:"password" }
+  auth:{ user:"cantor.jason.ray88.com", pass:"WhiteDevil88@@" }
 });
 
 // Submit case
